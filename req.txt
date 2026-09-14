@@ -1,0 +1,463 @@
+# Certificate Generator — Requirements
+
+## 1. Project Overview
+
+Build a certificate generation and verification system using:
+
+* **Next.js** — Frontend + Backend/API
+* **MongoDB** — Certificate and user/course data
+* **Cloudinary** — Media/assets storage
+
+The system will use **one certificate template** initially. Certificate information will be dynamically populated from MongoDB.
+
+---
+
+## 2. Certificate Template
+
+Create a single reusable certificate template.
+
+The following fields must be dynamic:
+
+1. Student/User Name
+2. Course Name
+3. Completion Date
+4. Certificate ID - Auto generated
+
+The visual design of the certificate should remain fixed.
+
+Example:
+
+```text
+CERTIFICATE OF COMPLETION
+
+This certificate is awarded to
+
+[STUDENT NAME]
+
+for successfully completing
+
+[COURSE NAME]
+
+Completion Date: [COMPLETION DATE]
+
+Certificate ID: [CERTIFICATE ID]
+```
+
+---
+
+## 3. Certificate ID
+
+Every certificate must have a unique certificate ID.
+
+Example:
+
+```text
+UC-c12fca53-ef2a-493b-8431-a8d501dd73a0
+```
+
+The ID should be generated automatically when a certificate is created.
+
+It will also be used for public certificate verification.
+
+---
+
+## 4. MongoDB
+
+Store certificate information in MongoDB.
+
+### Certificate Model
+
+```ts
+{
+  certificateId: string,
+  studentName: string,
+  courseName: string,
+  completionDate: Date,
+  templateId: string,
+  createdAt: Date,
+  updatedAt: Date
+}
+```
+
+### Requirements
+
+* `certificateId` must be unique.
+* `studentName` is required.
+* `courseName` is required.
+* `completionDate` is required.
+* `templateId` defaults to `"default"`.
+* Store creation/update timestamps.
+
+---
+
+## 5. Cloudinary
+
+Cloudinary will be used for certificate-related media assets.
+
+Possible assets:
+
+```text
+/logo
+/certificate/background
+/certificate/signature
+/certificate/seal
+```
+
+Cloudinary should store:
+
+* Logo
+* Certificate background
+* Signature image
+* Certificate seal
+* Other reusable certificate assets
+
+The certificate data itself should remain in MongoDB.
+
+---
+
+## 6. Certificate Page
+
+Create a public certificate page:
+
+```text
+/certificate/[certificateId]
+```
+
+Example:
+
+```text
+/certificate/UC-c12fca53-ef2a-493b-8431-a8d501dd73a0
+```
+
+The page should:
+
+1. Fetch the certificate from MongoDB.
+2. Load the certificate template.
+3. Populate the dynamic fields.
+4. Display the completed certificate.
+5. Provide print/download functionality.
+
+---
+
+## 7. Certificate Verification
+
+Create a public verification page:
+
+```text
+/verify/[certificateId]
+```
+
+Example:
+
+```text
+/verify/UC-c12fca53-ef2a-493b-8431-a8d501dd73a0
+```
+
+### Valid Certificate
+
+Display:
+
+```text
+✓ Certificate Verified
+
+Student Name
+John Doe
+
+Course
+Next.js Masterclass
+
+Completion Date
+September 14, 2026
+
+Certificate ID
+UC-c12fca53-ef2a-493b-8431-a8d501dd73a0
+```
+
+### Invalid Certificate
+
+Display:
+
+```text
+Certificate Not Found
+
+The certificate ID you entered is invalid or does not exist.
+```
+
+---
+
+## 8. Admin Certificate Creation
+
+Create an admin interface for generating certificates.
+
+Route:
+
+```text
+/admin/certificates
+```
+
+Form:
+
+```text
+Student Name
+[____________________________]
+
+Course Name
+[____________________________]
+
+Completion Date
+[____________________________]
+
+[ Preview Certificate ]
+
+[ Create Certificate ]
+```
+
+After creation:
+
+```text
+Certificate Created Successfully
+
+Certificate ID:
+UC-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+
+[ View Certificate ]
+[ Copy Link ]
+```
+
+---
+
+## 9. Certificate Preview
+
+Before creating the certificate, the admin should be able to preview the certificate.
+
+The preview should use the exact same component as the public certificate page.
+
+Use:
+
+```text
+CertificateTemplate
+```
+
+as the reusable component.
+
+Example:
+
+```tsx
+<CertificateTemplate
+  studentName={studentName}
+  courseName={courseName}
+  completionDate={completionDate}
+  certificateId={certificateId}
+/>
+```
+
+---
+
+## 10. Certificate Download
+
+The user should be able to download the certificate.
+
+Required options:
+
+```text
+[ Print ]
+[ Download PDF ]
+```
+
+The downloaded certificate should preserve the certificate's visual design.
+
+The PDF should be suitable for:
+
+* Resume
+* LinkedIn
+* Email
+* Printing
+* Digital sharing
+
+---
+
+## 11. Certificate Sharing
+
+Provide a public URL:
+
+```text
+https://yourdomain.com/certificate/[certificateId]
+```
+
+Allow the admin/user to copy the certificate URL.
+
+Example:
+
+```text
+[ Copy Certificate Link ]
+```
+
+---
+
+## 12. Responsive Design
+
+The certificate application must work on:
+
+* Desktop
+* Laptop
+* Tablet
+* Mobile
+
+The certificate itself should maintain the correct aspect ratio.
+
+The certificate should not become distorted on smaller screens.
+
+---
+
+## 13. Recommended Next.js Structure
+
+```text
+app/
+│
+├── certificate/
+│   └── [certificateId]/
+│       └── page.tsx
+│
+├── verify/
+│   └── [certificateId]/
+│       └── page.tsx
+│
+├── admin/
+│   └── certificates/
+│       ├── page.tsx
+│       ├── create/
+│       │   └── page.tsx
+│       └── [id]/
+│           └── page.tsx
+│
+├── api/
+│   └── certificates/
+│       ├── route.ts
+│       └── [certificateId]/
+│           └── route.ts
+│
+components/
+│
+├── CertificateTemplate.tsx
+├── CertificatePreview.tsx
+├── CertificateForm.tsx
+└── CertificateActions.tsx
+│
+lib/
+│
+├── mongodb.ts
+└── cloudinary.ts
+│
+models/
+│
+└── Certificate.ts
+```
+
+---
+
+## 14. API Requirements
+
+### Create Certificate
+
+```http
+POST /api/certificates
+```
+
+Request:
+
+```json
+{
+  "studentName": "John Doe",
+  "courseName": "Next.js Masterclass",
+  "completionDate": "2026-09-14"
+}
+```
+
+Response:
+
+```json
+{
+  "success": true,
+  "certificateId": "UC-c12fca53-ef2a-493b-8431-a8d501dd73a0"
+}
+```
+
+### Get Certificate
+
+```http
+GET /api/certificates/[certificateId]
+```
+
+Response:
+
+```json
+{
+  "certificateId": "UC-c12fca53-ef2a-493b-8431-a8d501dd73a0",
+  "studentName": "John Doe",
+  "courseName": "Next.js Masterclass",
+  "completionDate": "2026-09-14",
+  "templateId": "default"
+}
+```
+
+---
+
+## 15. Environment Variables
+
+The application should use environment variables for credentials.
+
+```env
+MONGODB_URI=
+
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
+
+NEXT_PUBLIC_APP_URL=
+```
+
+Never expose private MongoDB or Cloudinary API credentials to the client.
+
+---
+
+## 16. Initial Scope
+
+### Version 1
+
+Implement only:
+
+* One certificate template
+* Dynamic student name
+* Dynamic course name
+* Dynamic completion date
+* Dynamic certificate ID
+* MongoDB storage
+* Cloudinary assets
+* Certificate creation
+* Certificate display
+* Public certificate URL
+* Certificate verification
+* Print certificate
+* PDF download
+* Responsive UI
+
+### Future Scope
+
+The architecture should allow adding:
+
+* Multiple certificate templates
+* User accounts
+* Course management
+* Instructor information
+* Digital signatures
+* QR code verification
+* Certificate revocation
+* Certificate expiration
+* Email certificate delivery
+* LinkedIn sharing
+* Admin dashboard
+* Certificate analytics
+* Bulk certificate generation
+* CSV import
+* Custom branding
+* Multiple organizations
