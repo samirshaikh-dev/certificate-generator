@@ -16,6 +16,8 @@ import {
   Loader2,
 } from "lucide-react";
 import CertificateTemplate from "@/components/CertificateTemplate";
+import { API_ENDPOINTS } from "@/constants/api-constant";
+import { APP_ROUTES } from "@/constants/routes-constant";
 
 function CertificatePreviewContent() {
   const searchParams = useSearchParams();
@@ -51,7 +53,7 @@ function CertificatePreviewContent() {
     async function fetchCert() {
       try {
         setLoading(true);
-        const res = await fetch(`/api/certificates/${encodeURIComponent(idParam)}`);
+        const res = await fetch(API_ENDPOINTS.CERTIFICATE_BY_ID(idParam));
         const data = await res.json();
         if (data.success && isMounted) {
           setCertificateData({
@@ -141,14 +143,14 @@ function CertificatePreviewContent() {
   };
 
   // Build Edit URL to navigate back to creation form with fields prefilled
-  const editUrl = `/admin/certificates/create?${new URLSearchParams({
+  const editUrl = APP_ROUTES.ADMIN.CREATE_WITH_QUERY({
     id: certificateData.certificateId,
     studentName: certificateData.studentName || "",
     courseName: certificateData.courseName || "",
     completionDate: typeof certificateData.completionDate === "string" 
       ? certificateData.completionDate.split("T")[0]
       : new Date(certificateData.completionDate).toISOString().split("T")[0],
-  }).toString()}`;
+  });
 
   if (loading) {
     return (

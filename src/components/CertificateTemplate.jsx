@@ -5,7 +5,8 @@ import {
   ACADEMY_INFO,
   SIGNATORY_INFO,
   CERTIFICATE_DEFAULTS,
-} from "@/constants/certificate";
+} from "@/constants/certificate-constant";
+import { formatDate } from "@/utils/date";
 
 export default function CertificateTemplate({
   studentName = CERTIFICATE_DEFAULTS.defaultStudentName,
@@ -15,23 +16,9 @@ export default function CertificateTemplate({
   assets = {},
   id = "certificate-to-print",
 }) {
-  // Format completion date nicely
-  const formatDate = (dateInput) => {
-    if (!dateInput) return "September 14, 2026";
-    try {
-      const d = new Date(dateInput);
-      if (isNaN(d.getTime())) return String(dateInput);
-      return d.toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      });
-    } catch {
-      return String(dateInput);
-    }
-  };
-
-  const formattedDate = formatDate(completionDate);
+  const formattedDate = formatDate(completionDate, {
+    fallback: "September 14, 2026",
+  });
 
   return (
     <div className="w-full flex justify-center items-center py-2 overflow-x-auto">

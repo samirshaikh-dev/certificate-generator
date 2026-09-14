@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { CheckCircle2, XCircle, ArrowLeft, ExternalLink, Award, Calendar, Hash, User } from "lucide-react";
 import connectToDatabase from "@/lib/mongodb";
+import { formatDate } from "@/utils/date";
 import Certificate from "@/models/Certificate";
 
 export const dynamic = "force-dynamic";
@@ -29,20 +30,6 @@ async function getCertificate(certificateId) {
 export default async function VerifyCertificatePage({ params }) {
   const { certificateId } = await params;
   const certificate = await getCertificate(certificateId);
-
-  const formatDate = (dateInput) => {
-    if (!dateInput) return "—";
-    try {
-      const d = new Date(dateInput);
-      return d.toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      });
-    } catch {
-      return String(dateInput);
-    }
-  };
 
   return (
     <div className="min-h-screen bg-slate-50 py-12 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center">

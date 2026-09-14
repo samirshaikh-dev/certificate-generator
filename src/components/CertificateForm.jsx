@@ -11,6 +11,8 @@ import {
   Award,
   Loader2,
 } from "lucide-react";
+import { API_ENDPOINTS } from "@/constants/api-constant";
+import { APP_ROUTES } from "@/constants/routes-constant";
 
 function CertificateFormContent() {
   const router = useRouter();
@@ -67,8 +69,8 @@ function CertificateFormContent() {
       setIsSubmitting(true);
 
       const endpoint = isEditing && idParam
-        ? `/api/certificates/${encodeURIComponent(idParam)}`
-        : "/api/certificates";
+        ? API_ENDPOINTS.CERTIFICATE_BY_ID(idParam)
+        : API_ENDPOINTS.CERTIFICATES;
       
       const method = isEditing && idParam ? "PUT" : "POST";
 
@@ -98,7 +100,7 @@ function CertificateFormContent() {
       const finalId = data.certificateId || idParam;
 
       // Redirect user to the dedicated Certificate Preview Page
-      router.push(`/admin/certificates/preview?id=${encodeURIComponent(finalId)}`);
+      router.push(APP_ROUTES.ADMIN.PREVIEW_BY_ID(finalId));
     } catch (err) {
       console.error(err);
       setErrorMessage(err.message || "An unexpected error occurred.");
@@ -121,7 +123,7 @@ function CertificateFormContent() {
       ...(idParam ? { id: idParam } : {}),
     });
 
-    router.push(`/admin/certificates/preview?${query.toString()}`);
+    router.push(APP_ROUTES.ADMIN.PREVIEW_WITH_QUERY(query));
   };
 
   return (

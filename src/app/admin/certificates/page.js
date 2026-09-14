@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { PlusCircle, Search, ExternalLink, ShieldCheck, Award, Eye } from "lucide-react";
 import connectToDatabase from "@/lib/mongodb";
+import { formatDate } from "@/utils/date";
 import Certificate from "@/models/Certificate";
 
 export const dynamic = "force-dynamic";
@@ -98,13 +99,9 @@ export default async function AdminCertificatesPage() {
                 </thead>
                 <tbody className="divide-y divide-slate-100 text-slate-700">
                   {certificates.map((cert) => {
-                    const formattedDate = cert.completionDate
-                      ? new Date(cert.completionDate).toLocaleDateString("en-US", {
-                          year: "numeric",
-                          month: "short",
-                          day: "numeric",
-                        })
-                      : "—";
+                    const formattedDate = formatDate(cert.completionDate, {
+                      monthStyle: "short",
+                    });
 
                     return (
                       <tr key={cert.certificateId} className="hover:bg-slate-50/80 transition-colors">
