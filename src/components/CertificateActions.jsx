@@ -37,8 +37,8 @@ export default function CertificateActions({
       setIsDownloading(true);
       setErrorMessage("");
 
-      // Dynamic import to avoid SSR issues
-      const html2canvas = (await import("html2canvas")).default;
+      // Dynamic import to avoid SSR issues and support modern CSS colors (oklab/oklch)
+      const html2canvas = (await import("html2canvas-pro")).default;
       const { jsPDF } = await import("jspdf");
 
       const element = document.getElementById(targetElementId);

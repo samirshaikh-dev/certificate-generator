@@ -45,7 +45,6 @@ function CertificatePreviewContent() {
   // If an ID is provided, fetch latest certificate data from MongoDB API
   useEffect(() => {
     if (!idParam) {
-      setLoading(false);
       return;
     }
 
@@ -99,7 +98,7 @@ function CertificatePreviewContent() {
       setIsDownloading(true);
       setErrorMessage("");
 
-      const html2canvas = (await import("html2canvas")).default;
+      const html2canvas = (await import("html2canvas-pro")).default;
       const { jsPDF } = await import("jspdf");
 
       const element = document.getElementById("certificate-preview-canvas");
