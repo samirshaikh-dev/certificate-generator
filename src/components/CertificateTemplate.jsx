@@ -21,7 +21,7 @@ export default function CertificateTemplate({
   });
 
   return (
-    <div className="w-full flex justify-center items-center py-2 overflow-x-auto">
+    <div className="w-full flex justify-center items-center py-2 no-scrollbar">
       {/* Outer Certificate Frame Container (fixed 1000px x 707px aspect-ratio for standard A4 landscape 1.414:1) */}
       <div
         id={id}

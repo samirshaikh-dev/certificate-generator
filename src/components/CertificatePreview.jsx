@@ -25,7 +25,7 @@ export default function CertificatePreview({
       </div>
 
       {/* Render certificate inside a horizontally scrollable / scaled container */}
-      <div className="w-full overflow-x-auto flex justify-center py-2">
+      <div className="w-full overflow-x-auto no-scrollbar flex justify-center py-2">
         <div className="transform scale-[0.65] md:scale-[0.85] lg:scale-100 origin-top transition-transform duration-200 my-[-60px] md:my-[-30px] lg:my-0">
           <CertificateTemplate
             id="preview-certificate-canvas"

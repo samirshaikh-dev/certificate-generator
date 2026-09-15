@@ -88,7 +88,7 @@ export default async function CertificatePage({ params }) {
         </div>
 
         {/* Certificate Display Area (Scalable on smaller screens) */}
-        <div className="w-full bg-white/40 p-2 sm:p-6 rounded-2xl border border-slate-200/80 shadow-xs flex justify-center overflow-x-auto">
+        <div className="w-full bg-white/40 p-2 sm:p-6 rounded-2xl border border-slate-200/80 shadow-xs flex justify-center overflow-x-auto no-scrollbar">
           <CertificateTemplate
             id="certificate-to-print"
             studentName={certificate.studentName}

@@ -44,7 +44,7 @@ export default function Home() {
             </span>
           </div>
 
-          <div className="bg-slate-900/5 rounded-3xl p-4 sm:p-6 border border-slate-200 shadow-xl overflow-x-auto flex justify-center">
+          <div className="bg-slate-900/5 rounded-3xl p-4 sm:p-6 border border-slate-200 shadow-xl overflow-hidden no-scrollbar flex justify-center">
             <div className="transform scale-[0.6] sm:scale-[0.8] lg:scale-95 origin-top transition-all duration-300 my-[-80px] sm:my-[-30px] lg:my-0">
               <CertificateTemplate
                 id="homepage-demo-certificate"

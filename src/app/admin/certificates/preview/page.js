@@ -285,7 +285,7 @@ function CertificatePreviewContent() {
             </button>
           </div>
 
-          <div className="w-full bg-white/50 backdrop-blur-xs p-2 sm:p-6 lg:p-8 rounded-3xl border border-slate-200/80 shadow-md flex justify-center items-center overflow-x-auto min-h-[500px]">
+          <div className="w-full bg-white/50 backdrop-blur-xs p-2 sm:p-6 lg:p-8 rounded-3xl border border-slate-200/80 shadow-md flex justify-center items-center overflow-x-auto no-scrollbar min-h-[500px]">
             {/* Maintain fixed A4 landscape 1.414:1 ratio scaled smoothly */}
             <div
               className="flex justify-center items-center transition-transform duration-200 origin-center"
