@@ -70,13 +70,6 @@ export default async function AdminCertificatesPage() {
             <p className="text-sm text-slate-500 max-w-md mx-auto mb-6">
               Generate your first official certificate of completion with dynamic student name, course title, and unique verification ID.
             </p>
-            <Link
-              href="/admin/certificates/create"
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-[#1e3a5f] text-white font-medium text-sm hover:bg-[#162c47] transition-all shadow-sm"
-            >
-              <PlusCircle className="w-4 h-4" />
-              Generate Certificate
-            </Link>
           </div>
         ) : (
           <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs">
