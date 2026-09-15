@@ -90,17 +90,6 @@ export default function RootLayout({ children }) {
         <footer className="no-print bg-white border-t border-slate-200 py-8 px-4 text-center text-xs text-slate-500">
           <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
             <p>© {new Date().getFullYear()} Apex Academy Credential Engine. All rights reserved.</p>
-            <div className="flex items-center gap-4">
-              <Link href="/verify" className="hover:text-slate-800 transition-colors">
-                Verification Portal
-              </Link>
-              <Link href="/admin/certificates" className="hover:text-slate-800 transition-colors">
-                Admin Console
-              </Link>
-              <Link href="/admin/certificates/create" className="hover:text-slate-800 transition-colors">
-                Issue Certificate
-              </Link>
-            </div>
           </div>
         </footer>
       </body>

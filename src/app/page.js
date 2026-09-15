@@ -34,31 +34,6 @@ export default function Home() {
             Issue cryptographically verifiable, high-resolution certificates of completion with dynamic fields, cloud asset integration, and instant PDF downloads.
           </p>
 
-          {/* Call to Actions */}
-          <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
-            <Link
-              href="/admin/certificates/create"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[#1e3a5f] hover:bg-[#152a45] text-white font-medium text-sm transition-all shadow-lg active:scale-98"
-            >
-              <span>Issue New Certificate</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-
-            <Link
-              href="/verify"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-slate-800 font-medium text-sm transition-all shadow-xs"
-            >
-              <ShieldCheck className="w-4 h-4 text-emerald-600" />
-              <span>Verify a Certificate</span>
-            </Link>
-
-            <Link
-              href="/admin/certificates"
-              className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium text-sm transition-all"
-            >
-              <span>Admin Dashboard</span>
-            </Link>
-          </div>
         </div>
 
         {/* Live Certificate Demo Showcase */}
