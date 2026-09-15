@@ -10,6 +10,7 @@ An enterprise-grade, full-stack certificate generation and public verification s
   - Classic A4 landscape aspect ratio (1.414:1) with royal navy and gold ornamentation.
   - Dynamically populated recipient name, course name, completion date, and certificate ID.
   - Optional Cloudinary asset overrides for academy logo, instructor signature, and official seal.
+  - Clean cross-browser scrollbar suppression (`.no-scrollbar`) ensuring zero intrusive sliders.
 
 - **👁️ Dedicated Preview Page (`/admin/certificates/preview`):**
   - Instant redirect upon form submission.
@@ -27,6 +28,11 @@ An enterprise-grade, full-stack certificate generation and public verification s
 
 - **📊 Admin Dashboard (`/admin/certificates`):**
   - Manage, preview, edit, and verify all issued credentials.
+
+- **🎨 Modular Layout Components:**
+  - **`Navbar.jsx`:** Sticky glassmorphism navigation header with quick links and primary "Issue Certificate" CTA.
+  - **`Footer.jsx`:** Rich multi-column footer featuring live network status, architecture highlights, security specifications, and quick navigation.
+  - Both components automatically include `no-print` classes to ensure exported PDFs and printouts remain immaculate.
 
 ---
 
@@ -71,10 +77,12 @@ certificate-generator/
 │   │   │   ├── page.js                  # Search / lookup certificate by ID
 │   │   │   └── [certificateId]/
 │   │   │       └── page.js              # Public verification record
-│   │   ├── globals.css                  # Global styles, fonts, and @media print rules
-│   │   ├── layout.js                    # Root layout with navbar and footer
+│   │   ├── globals.css                  # Global styles, fonts, .no-scrollbar, and @media print rules
+│   │   ├── layout.js                    # Root layout integrating Navbar and Footer
 │   │   └── page.js                      # Homepage with interactive certificate showcase
 │   ├── components/
+│   │   ├── Navbar.jsx                   # Sticky global header navigation
+│   │   ├── Footer.jsx                   # Rich multi-column footer with network status
 │   │   ├── CertificateTemplate.jsx      # Reusable visual certificate component
 │   │   ├── CertificateActions.jsx       # Print, PDF export, and share button bar
 │   │   ├── CertificateForm.jsx          # Admin form with validation & prefill support
