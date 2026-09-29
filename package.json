@@ -2,6 +2,7 @@
   "name": "certificate-generator",
   "version": "0.1.0",
   "private": true,
+  "author": "AAMIR FAIZAN ANSARI (Roll no: 244BCA169)",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

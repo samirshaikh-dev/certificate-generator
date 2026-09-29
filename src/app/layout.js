@@ -27,6 +27,8 @@ const fontSignature = Great_Vibes({
 export const metadata = {
   title: "Apex Certificates | Verification & Generation Platform",
   description: "Enterprise certificate generation and public verification system powered by Next.js, MongoDB, and Cloudinary.",
+  authors: [{ name: "AAMIR FAIZAN ANSARI" }],
+  creator: "AAMIR FAIZAN ANSARI",
 };
 
 export default function RootLayout({ children }) {

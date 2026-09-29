@@ -145,8 +145,16 @@ export default function Footer() {
         </div>
 
         {/* Bottom Sub-Footer Bar */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <p>© {new Date().getFullYear()} Apex Academy Credential Engine. All rights reserved.</p>
+        <div className="pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 text-center sm:text-left">
+            <p>© {new Date().getFullYear()} Apex Academy Credential Engine. All rights reserved.</p>
+            <span className="hidden sm:inline text-slate-700">•</span>
+            <p className="text-slate-400">
+              Designed and built by{" "}
+              <span className="text-amber-400 font-semibold tracking-wide">AAMIR FAIZAN ANSARI</span>{" "}
+              <span className="text-slate-500 text-[11px] font-mono">(Roll no: 244BCA169)</span>
+            </p>
+          </div>
           <div className="flex items-center gap-4 text-[11px]">
             <span className="text-slate-400">Secured with 256-bit hash validation</span>
             <span className="h-3 w-px bg-slate-800" />

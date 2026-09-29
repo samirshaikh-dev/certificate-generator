@@ -167,6 +167,15 @@ All API paths are centralized in `src/constants/api-constant.js`:
 
 ---
 
+## 👨‍💻 Author & Credits
+
+Designed and built by:
+- **Developer:** AAMIR FAIZAN ANSARI
+- **Roll No:** 244BCA169
+
+---
+
 ## 📄 License
 
 MIT
+
